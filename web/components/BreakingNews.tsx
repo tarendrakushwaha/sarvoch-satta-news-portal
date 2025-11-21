@@ -61,7 +61,7 @@ const BreakingNews: React.FC<BreakingNewsProps> = ({ news }) => {
                 <div className="flex-1 overflow-hidden relative h-full bg-gray-50">
                     <div className="absolute top-0 left-0 w-full h-full flex items-center animate-marquee whitespace-nowrap">
                         {newsItems.map((item, index) => (
-                            <div key={index} className="flex items-center mx-8 group cursor-pointer">
+                            <Link href={`/news/${item.id}`} key={index} className="flex items-center mx-8 group cursor-pointer">
                                 <img
                                     src={item.image || "https://via.placeholder.com/100"}
                                     alt="News"
@@ -70,11 +70,11 @@ const BreakingNews: React.FC<BreakingNewsProps> = ({ news }) => {
                                 <span className="text-sm font-bold text-gray-800 group-hover:text-[#c00000] transition-colors">
                                     {item.heading}
                                 </span>
-                            </div>
+                            </Link>
                         ))}
                         {/* Duplicate for seamless loop */}
                         {newsItems.map((item, index) => (
-                            <div key={`dup-${index}`} className="flex items-center mx-8 group cursor-pointer">
+                            <Link href={`/news/${item.id}`} key={`dup-${index}`} className="flex items-center mx-8 group cursor-pointer">
                                 <img
                                     src={item.image || "https://via.placeholder.com/100"}
                                     alt="News"
@@ -83,7 +83,7 @@ const BreakingNews: React.FC<BreakingNewsProps> = ({ news }) => {
                                 <span className="text-sm font-bold text-gray-800 group-hover:text-[#c00000] transition-colors">
                                     {item.heading}
                                 </span>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>

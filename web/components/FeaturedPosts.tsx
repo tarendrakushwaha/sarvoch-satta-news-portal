@@ -40,7 +40,7 @@ const FeaturedPosts = ({ news }: FeaturedPostsProps) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {displayPosts.map((post, index) => (
-                    <div key={index} className="flex gap-4 group cursor-pointer bg-white p-2 rounded-lg hover:shadow-md transition-shadow border border-gray-100">
+                    <Link href={`/news/${post.id}`} key={index} className="flex gap-4 group cursor-pointer bg-white p-2 rounded-lg hover:shadow-md transition-shadow border border-gray-100">
                         <div className="w-1/3 h-24 md:h-32 overflow-hidden rounded-md relative">
                             <img
                                 src={post.image}
@@ -55,7 +55,7 @@ const FeaturedPosts = ({ news }: FeaturedPostsProps) => {
                             </h3>
                             <span className="text-xs text-gray-400">{post.date}</span>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>

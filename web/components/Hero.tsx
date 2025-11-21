@@ -34,7 +34,7 @@ const Hero: React.FC<HeroProps> = ({ news }) => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Main News - Left (2 columns) */}
                 <div className="lg:col-span-2">
-                    <div className="relative h-96 rounded-lg overflow-hidden group cursor-pointer">
+                    <Link href={news ? `/news/${news.id}` : '#'} className="relative h-96 rounded-lg overflow-hidden group cursor-pointer block">
                         <img
                             src={mainNews.image}
                             alt={mainNews.heading}
@@ -53,7 +53,7 @@ const Hero: React.FC<HeroProps> = ({ news }) => {
                             )}
                             <p className="text-gray-400 text-xs">{mainNews.date}</p>
                         </div>
-                    </div>
+                    </Link>
                 </div>
 
                 {/* Sidebar - Right (1 column) */}

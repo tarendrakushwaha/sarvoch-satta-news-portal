@@ -34,7 +34,7 @@ const MissedNews = ({ news }: MissedNewsProps) => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {displayNews.map((item, index) => (
-                    <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
+                    <Link href={`/news/${item.id}`} key={index} className="bg-white rounded-lg shadow-sm overflow-hidden group hover:shadow-md transition-shadow block">
                         <div className="h-40 overflow-hidden relative">
                             <img
                                 src={item.image}
@@ -54,7 +54,7 @@ const MissedNews = ({ news }: MissedNewsProps) => {
                                 <span>{item.date}</span>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>
