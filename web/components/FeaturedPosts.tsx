@@ -1,33 +1,30 @@
 import React from 'react';
 import Link from 'next/link';
 
-const FeaturedPosts = () => {
-    const posts = [
-        {
-            category: "POLITICS",
-            title: "चुनाव आयोग की नई घोषणा: अब घर बैठे कर सकेंगे मतदान",
-            image: "https://images.unsplash.com/photo-1540910419868-474947cebacb?q=80&w=2071&auto=format&fit=crop",
-            date: "Oct 24, 2025"
-        },
-        {
-            category: "TECHNOLOGY",
-            title: "भारत में लॉन्च हुआ दुनिया का सबसे सस्ता 5G स्मार्टफोन",
-            image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
-            date: "Oct 24, 2025"
-        },
-        {
-            category: "SPORTS",
-            title: "विराट कोहली ने तोड़ा सचिन तेंदुलकर का एक और रिकॉर्ड",
-            image: "https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?q=80&w=2070&auto=format&fit=crop",
-            date: "Oct 24, 2025"
-        },
-        {
-            category: "ENTERTAINMENT",
-            title: "बॉलीवुड की इस फिल्म ने पहले ही दिन की 100 करोड़ की कमाई",
-            image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop",
-            date: "Oct 24, 2025"
-        }
-    ];
+interface NewsArticle {
+    id: string;
+    heading: string;
+    subheading: string;
+    content: string;
+    category: string;
+    image: string;
+    date: string;
+    author: string;
+}
+
+interface FeaturedPostsProps {
+    news: NewsArticle[];
+}
+
+const FeaturedPosts = ({ news }: FeaturedPostsProps) => {
+    // Use passed news if available, otherwise fallback to empty or handle gracefully
+    // Note: The parent passes news.slice(0, 4), so we expect up to 4 items.
+
+    const displayPosts = news.length > 0 ? news : [];
+
+    if (displayPosts.length === 0) {
+        return null; // Or return a skeleton/placeholder
+    }
 
     return (
         <section className="container mx-auto px-4 py-8">
@@ -42,19 +39,19 @@ const FeaturedPosts = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {posts.map((post, index) => (
+                {displayPosts.map((post, index) => (
                     <div key={index} className="flex gap-4 group cursor-pointer bg-white p-2 rounded-lg hover:shadow-md transition-shadow border border-gray-100">
                         <div className="w-1/3 h-24 md:h-32 overflow-hidden rounded-md relative">
                             <img
                                 src={post.image}
-                                alt={post.title}
+                                alt={post.heading}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                         </div>
                         <div className="flex-1 flex flex-col justify-center">
                             <span className="text-[10px] font-bold text-[#c00000] uppercase mb-1">{post.category}</span>
                             <h3 className="text-base md:text-lg font-bold text-gray-800 leading-snug group-hover:text-[#c00000] transition-colors line-clamp-2 mb-2">
-                                {post.title}
+                                {post.heading}
                             </h3>
                             <span className="text-xs text-gray-400">{post.date}</span>
                         </div>
